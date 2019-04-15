@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np 
 
@@ -19,5 +20,4 @@ ratings = pd.read_csv('/Users/wangwei/Recommender System/jester_dataset_2/jester
 # in the rating file, the space between to column is 2 tab, so i double the sep
 ratings=ratings.pivot_table(index='userid', columns='jokeid', values='ratings') #reshape the dataframe to a easy under standing matrix
 
-print(ratings.loc[1,5])
 
