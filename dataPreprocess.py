@@ -26,11 +26,20 @@ ratings = pd.read_csv('/Users/wangwei/Recommender System/jester_dataset_2/jester
 # reshape the dataframe to a easy under standing matrix
 ratings = ratings.pivot_table(
     index='userid', columns='jokeid', values='ratings')
-pca = PCA(n_components='mle')
+ratings_col = ratings.columns.tolist()
+# pca = PCA(n_components='mle')
 # replace the NaN value with 0 for the futher calculation
-ratings = np.nan_to_num(ratings)
-
+newRatings = np.nan_to_num(ratings)
 # ratings = pca.fit_transform(ratings)
-result = CFS(ratings,30)
-result.recommendByUser()
-# print(ratings.shape)
+result = CFS(newRatings, 256, 5, 5)
+recomendList = result.recommendByUser()
+def searchJokeByIndice(indexvalue):
+    recommedjoke = []
+    for i in indexvalue:
+        recommedjoke.append(ratings_col[i])
+    print('the recommeded joke for user 130 is ',recommedjoke)
+searchJokeByIndice(recomendList)
+# print()
+# for indice,value in enumerate(np.array(ratings[79]).tolist()):
+#     if value == 0:
+#         print(indice)
