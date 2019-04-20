@@ -2,7 +2,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.decomposition import PCA
-from sklearn.metrics import jaccard_similarity_score
+import os
+from collaborative_filering_system import CFS
 
 # dataframe1 = pd.read_excel('jester-data-1.xls', sep="\t", name = list(range(1,100)),header = list(range(1,100)))
 # dataframe1.insert(0,"USERS",)
@@ -26,6 +27,10 @@ ratings = pd.read_csv('/Users/wangwei/Recommender System/jester_dataset_2/jester
 ratings = ratings.pivot_table(
     index='userid', columns='jokeid', values='ratings')
 pca = PCA(n_components='mle')
+# replace the NaN value with 0 for the futher calculation
 ratings = np.nan_to_num(ratings)
-ratings = pca.fit_transform(ratings)
+
+# ratings = pca.fit_transform(ratings)
+result = CFS(ratings,30)
+result.recommendByUser()
 # print(ratings.shape)
