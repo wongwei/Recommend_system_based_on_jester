@@ -3,7 +3,9 @@ from sklearn.metrics import jaccard_similarity_score
 import operator
 
 
-class CFS:
+# neighbourhood method
+
+class CFS1:
 
     def __init__(self, ratings, userId, n,threshold):
         # self.jokeID = jokeID
@@ -88,24 +90,3 @@ class CFS:
             if count > 1:
                 self.recommandList.append(key)
 
-        # for i in neighborId:
-        #     neighbourRating = []
-        #     neighbour = np.array(self.ratings[i]).tolist()
-        #     for j in userIndices:
-        #         neighbourRating.append(neighbour[j])
-
-        # self.recommandList = []
-
-        # recommandDict = {}
-        # for neighbor in self.neighbors:
-        #     jokes = self.userDict[neighbor[1]]
-        #     for joke in jokes:
-        #         if(joke[0] in recommandDict):
-        #             recommandDict[joke[0]] += neighbor[0]
-        #         else:
-        #             recommandDict[joke[0]] = neighbor[0]
-
-        # for key in recommandDict:
-        #     self.recommandList.append([recommandDict[key], key])
-        # self.recommandList.sort(reverse=True)
-        # self.recommandList = self.recommandList[:self.n]
