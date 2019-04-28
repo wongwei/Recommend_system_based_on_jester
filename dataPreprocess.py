@@ -16,18 +16,18 @@ for s in soup.strings:
 jokelist = list(map(lambda s: s.strip(), jokelist))
 jokeString = list(filter(None, jokelist))  # remove the empty element
 
-
 # Description of the rating file: without the rating of some jokes
 ratings = pd.read_csv('/Users/wangwei/Recommender System/jester_dataset_2/jester_ratings.dat',
                       sep=2*'\t', names=['userid', 'jokeid', 'ratings'])
-
-# in the rating file, the space between to column is 2 tab, so i double the sep
-# reshape the dataframe to a easy under standing matrix
+# in the rating file, the space between two columns is 2 tab, so i double the parameter sep
+# reshape the dataframe to a easy understanding matrix
 ratings = ratings.pivot_table(
     index='userid', columns='jokeid', values='ratings')
 ratings_col = ratings.columns.tolist()
 newRatings = np.nan_to_num(ratings)
-tester = 35
+
+# A trial of the program
+tester = 1778
 result = CFS1(newRatings, tester, 5, 5)
 recomendList = result.recommendByUser()
 
